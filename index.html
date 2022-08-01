@@ -14,10 +14,69 @@
 			<div class="title">Pokédex</div>
 		</header>
 		<main>
-			<section>Main</section>
+			<section id="list">List</section>
+			<section id="detail">
+				<div class="pokemon-title">
+					<h2 class="pokemon-name">Bulbasaur<span class="pokemon-number">#001</span>
+					</h2>
+				</div>
+				<div class="pokemon-details">
+					<div class="column-6">
+						<div class="pokemon-profile">
+							<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" alt="Bulbasaur">
+						</div>
+					</div>
+					<div class="column-6">
+						<div class="pokemon-type">
+							<h3>Type</h3>
+							<ul>
+								<li class="type grass">Grass</li>
+								<li class="type poison">Poison</li>
+							</ul>
+						</div>
+						<div class="pokemon-stats">
+							<h3>Stats</h3>
+							<ul>
+								<li class="stat">
+									<span class="label">Attack</span>
+									<span class="attack-number">65</span>
+									<div class="stat-container">
+										<div class="attack" style="width: calc((65/255)*100%);"></div>
+									</div>
+								</li>
+								<li class="stat">
+									<span class="label">Defense</span>
+									<span class="defense-number">65</span>
+									<div class="stat-container">
+										<div class="defense" style="width: calc((65/255)*100%);"></div>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<div class="pokemon-sprites">
+							<h3>Sprites</h3>
+							<ul>
+								<li class="sprite front-default">
+									<div class="sprite-container">
+										<div class="img-bg">
+											<img class="front-default-sprite" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="Front default">
+										</div>
+									</div>
+									<span class="label">Front default</span>
+								</li>
+								<li class="sprite back-default">
+									<div class="sprite-container">
+										<div class="img-bg">
+											<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/1.png" alt="Back default">
+										</div>
+									</div>
+									<span class="label">Back default</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</section>
 		</main>
-		<footer>
-			<script src="functions.js"></script>
-		</footer>
 	</body>
-</html></body></html>
+</html>
