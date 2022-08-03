@@ -14,6 +14,10 @@
     --text: #212121;
     --text-secondary: #616161;
     --white: #FFF;
+    --background-card-title: #076615;
+    --background-card: #61DC2B;
+    --background-card-border: #050A06;
+    --background-button: #3E65C4;
 
     /* TYPE COLORS */
     --bug: #729f3f;
@@ -65,12 +69,16 @@ nav {
 
 .title {
     height: 300px;
-    background-color: var(--background-title);
+    background-image: url('assets/28618047725_12759827c2_o.jpeg');
     color: var(--white);
     margin-top: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size:cover;
+    font-size: 2.1rem
 }
 
 main {
@@ -92,7 +100,100 @@ section {
     min-height: 100px;
 }
 
+
+.espai{
+    background-color: var(--background-main);
+}
+
+.cap>h1{
+    padding: 5rem;
+    color: var(--text-secondary);
+}
+
 /* LIST */
+
+.informacio{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+.card{
+    border: 0.2rem solid var(--background-card-border); 
+    overflow: hidden; 
+    background-color: var(--background-card);
+    width: 8rem;
+    height: 11rem;
+    justify-self: center;
+}
+
+.card>h3{
+    background-color: var(--background-card-title);
+    text-align: center;  
+    margin: 0;
+    color: var(--white) ;
+} 
+.card>.dades{
+    display: grid;
+    grid-auto-columns: 1.8rem;
+    grid-auto-rows: 1.8rem;
+    justify-items: auto;
+    justify-content:center;
+}
+.card>.dades>.atac{
+    background-color: var(--stat-attack);
+    grid-column: 1/2;
+    grid-row: 1/2;
+    border: 0.2rem solid var(--background-card-border);
+    border-radius: 50%;
+}
+.card>.dades>.defensa{
+    background-color: var(--stat-defense);
+    grid-column: 4/5;
+    grid-row: 1/2;
+    border: 0.2rem solid var(--background-card-border);
+    border-radius: 50%;
+}
+.card>img{
+    display: block;
+    margin: 0 auto;
+}
+
+/*Cercar pokémon*/
+.cercar_pokemon{
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   margin: 0 auto;
+   padding-top: 2.5rem;
+   padding-bottom: 2.5rem;
+   width: 90%;
+   max-width: 895px;
+   background-color: var(--background-section);
+   
+}
+
+input[type="search"]{
+    border: 0.2rem solid var(--background-title);
+    width: 20rem; 
+    background-image: url('assets/lupa.svg');
+    background-repeat: no-repeat;
+    background-position: 1.2rem 1.2rem;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px; 
+    margin-left: 2.6rem;
+    margin-right: 2.6rem;
+ 
+}
+button{
+    justify-items: end;
+    padding: 1.5rem;
+    width: 9rem;
+    background-color: var(--background-button);
+    color:var(--white);
+    margin-left: 2.6rem;
+    margin-right: 2.6rem;
+}
+
 
 /* DETAIL */
 #detail {
@@ -377,3 +478,4 @@ section {
         width: 45%;
     }
 }
+
