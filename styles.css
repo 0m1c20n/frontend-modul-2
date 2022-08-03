@@ -160,6 +160,11 @@ section {
     text-align: center;
 }
 
+#detail .pokemon-stats ul {
+    flex-direction: column;
+    gap: 20px;
+}
+
 #detail .pokemon-stats .stat {
     width: 100%;
     display: flex;
@@ -169,17 +174,22 @@ section {
     flex-wrap: wrap;
 }
 
-#detail .stat .label {
-    flex: 1;
-}
-
 #detail .attack-number,
 #detail .defense-number {
     font-weight: bold;
 }
 
-#detail .pokemon-stats .stat-container {
+#detail .stat .text {
+    flex: 1;
+    min-width: 90px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+#detail .pokemon-stats .bar-container {
     flex: 2;
+    min-width: 100px;
     height: 24px;
     background-color: var(--background-main);
     border-radius: 5px;
