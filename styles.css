@@ -9,15 +9,20 @@
     --border-type: #a4a4a4;
     --button-orange: #ee6b2f;
     --button-orange-hover: #da471b;
+    --button-blue: #30a7d7;
+    --button-blue-hover: #1b82b1;
     --stat-attack: #f44336;
     --stat-defense: #2196f3;
     --text: #212121;
     --text-secondary: #616161;
     --white: #FFF;
-    --background-card-title: #076615;
-    --background-card: #61DC2B;
-    --background-card-border: #050A06;
-    --background-button: #3E65C4;
+    --card-border: #212121;
+    --card-stats-border: #212121;
+    --card-name-background: rgba(0, 0, 0, .5);
+    --card-name: #f5f5f5;
+    --card-attack: #ef9a9a;
+    --card-defense: #81d4fa;
+    --nav-height: 70px;
 
     /* TYPE COLORS */
     --bug: #729f3f;
@@ -49,8 +54,14 @@ body {
     font-family: Helvetica, Arial, sans-serif;
 }
 
+a,
+a:visited {
+    color: var(--text);
+    text-decoration: none;
+}
+
 nav {
-    height: 50px;
+    height: var(--nav-height);
     background-color: var(--background-nav);
     display: flex;
     justify-content: center;
@@ -61,24 +72,75 @@ nav {
 }
 
 .nav-container {
+    width: 90%;
     max-width: 895px;
     margin: 0 auto;
-    width: 100%;
     text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+.nav-item {
+    flex: 1;
+    display: flex;
+}
+
+.left {
+    justify-content: flex-start;
+}
+
+.center {
+    justify-content: center;
+}
+
+.right {
+    justify-content: flex-end;
+}
+
+.nav-logo img {
+    height: 50px;
+}
+
+.links {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.nav-link {
+    list-style: none;
+}
+
+.nav-link a {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.nav-link a span {
+    margin-top: 4px;
+}
+
+.nav-icon {
+    height: 30px;
 }
 
 .title {
     height: 300px;
-    background-image: url('assets/28618047725_12759827c2_o.jpeg');
     color: var(--white);
-    margin-top: 50px;
+    margin-top: var(--nav-height);
     display: flex;
+    align-items: flex-start;
     justify-content: center;
-    align-items: center;
-    background-repeat:no-repeat;
-    background-position:center;
-    background-size:cover;
-    font-size: 2.1rem
+    background: url('/assets/images/background-header-light.png') center bottom;
+}
+
+.title h1 {
+    font-size: 60px;
+    color: var(--text);
 }
 
 main {
@@ -100,100 +162,99 @@ section {
     min-height: 100px;
 }
 
-
-.espai{
-    background-color: var(--background-main);
-}
-
-.cap>h1{
-    padding: 5rem;
-    color: var(--text-secondary);
-}
-
 /* LIST */
-
-.informacio{
+#list {
     display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-}
-.card{
-    border: 0.2rem solid var(--background-card-border); 
-    overflow: hidden; 
-    background-color: var(--background-card);
-    width: 8rem;
-    height: 11rem;
-    justify-self: center;
+    flex-direction: column;
 }
 
-.card>h3{
-    background-color: var(--background-card-title);
-    text-align: center;  
-    margin: 0;
-    color: var(--white) ;
-} 
-.card>.dades{
-    display: grid;
-    grid-auto-columns: 1.8rem;
-    grid-auto-rows: 1.8rem;
-    justify-items: auto;
-    justify-content:center;
-}
-.card>.dades>.atac{
-    background-color: var(--stat-attack);
-    grid-column: 1/2;
-    grid-row: 1/2;
-    border: 0.2rem solid var(--background-card-border);
-    border-radius: 50%;
-}
-.card>.dades>.defensa{
-    background-color: var(--stat-defense);
-    grid-column: 4/5;
-    grid-row: 1/2;
-    border: 0.2rem solid var(--background-card-border);
-    border-radius: 50%;
-}
-.card>img{
-    display: block;
+#list .actions,
+#list .cards {
+    width: 90%;
     margin: 0 auto;
 }
 
-/*Cercar pokémon*/
-.cercar_pokemon{
-   display: flex;
-   flex-wrap: wrap;
-   justify-content: space-between;
-   margin: 0 auto;
-   padding-top: 2.5rem;
-   padding-bottom: 2.5rem;
-   width: 90%;
-   max-width: 895px;
-   background-color: var(--background-section);
-   
+#list .actions {
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-input[type="search"]{
-    border: 0.2rem solid var(--background-title);
-    width: 20rem; 
-    background-image: url('assets/lupa.svg');
-    background-repeat: no-repeat;
-    background-position: 1.2rem 1.2rem;
-    font-size: 16px;
-    padding: 12px 20px 12px 40px; 
-    margin-left: 2.6rem;
-    margin-right: 2.6rem;
- 
-}
-button{
-    justify-items: end;
-    padding: 1.5rem;
-    width: 9rem;
-    background-color: var(--background-button);
-    color:var(--white);
-    margin-left: 2.6rem;
-    margin-right: 2.6rem;
+#list .actions input {
+    border: 1px solid var(--background-body);
+    border-radius: 5px;
+    padding: 10px 5px 10px 36px;
+    background: transparent url('assets/icons/search.svg') no-repeat 10px center;
 }
 
+#list .cards {
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 150px);
+    grid-gap: 12px;
+    justify-content: space-evenly;
+}
+
+#list .card {
+    list-style: none;
+}
+
+#list .card .background {
+    height: 198px;
+    width: 138px;
+    border: 6px solid var(--text);
+    border-radius: 3px;
+    background-image: linear-gradient(to right, var(--grass) 50%, var(--poison) 50%);
+    display: flex;
+    flex-direction: column;
+}
+
+#list .card .name-container {
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 22px;
+    text-align: center;
+    color: var(--card-name);
+    background-color: var(--card-name-background);
+}
+
+#list .card .image-container {
+    line-height: 0;
+}
+
+#list .card img {
+    width: 100%;
+}
+
+#list .card .stats {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 6px 6px 6px;
+}
+
+#list .card .attack-container,
+#list .card .defense-container {
+    border: 2px solid var(--card-stats-border);
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 50%;
+    height: 28px;
+    width: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#list .card .attack-container {
+    background-color: var(--card-attack);
+}
+
+#list .card .defense-container {
+    background-color: var(--card-defense);
+}
 
 /* DETAIL */
 #detail {
@@ -350,21 +411,11 @@ button{
 
 #detail .more-link {
     text-align: center;
-    margin: 30px 0;
+    padding-top: 40px;
 
 }
 
-#detail .more-link .button-orange {
-    background-color: var(--button-orange);
-    color: var(--white);
-    text-decoration: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-}
 
-#detail .more-link .button-orange:hover {
-    background-color: var(--button-orange-hover);
-}
 
 /* BATTLE */
 
@@ -454,6 +505,39 @@ button{
 
 /* OTHER STYLES */
 
+button,
+.button {
+    width: 100px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+}
+
+button:hover,
+.button:hover {
+    background: rgba(0, 0, 0, .2);
+}
+
+.button-blue {
+    background-color: var(--button-blue);
+    color: var(--white) !important;
+}
+
+.button-blue:hover {
+    background-color: var(--button-blue-hover);
+}
+
+.button-orange {
+    background-color: var(--button-orange);
+    color: var(--white) !important;
+}
+
+.button-orange:hover {
+    background-color: var(--button-orange-hover);
+}
+
 .column-6 {
     width: 90%;
 }
@@ -478,4 +562,3 @@ button{
         width: 45%;
     }
 }
-

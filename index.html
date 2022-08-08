@@ -9,98 +9,242 @@
 	<body>
 		<header>
 			<nav>
-				<div class="nav-container">Navbar</div>
+				<div class="nav-container">
+					<div class="nav-item left nav-logo">
+						<img src="assets/images/pokemon-logo.png" alt="Pokémon">
+					</div>
+					<ul class="nav-item center links">
+						<li class="nav-link">
+							<a href="index.html">
+								<img class="nav-icon" src="assets/icons/pokeball.svg">
+								<span>Pokédex</span>
+							</a>
+						</li>
+						<li class="nav-link">
+							<a href="battle.html">
+								<img class="nav-icon" src="assets/icons/pokemon-gym.svg">
+								<span>Battle</span>
+							</a>
+						</li>
+					</ul>
+					<div class="nav-item right theme">
+						<button>Theme</button>
+					</div>
+				</div>
 			</nav>
-			<div class="title">Pokédex</div>
+			<div class="title">
+				<h1>Pokédex</h1>
+			</div>
 		</header>
 		<main>
-			<form class="cercar_pokemon">
-				<input type="search" name="cerca" placeholder="   Enter Pokémon name...">
-				<button>Reload</button>
-			</form>
-				<section class="informacio">
-					<article class="card">
-						<h3>Nom pokemon</h3>
-						<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" alt="pokemon 1"  height="100">
-						<div class="dades">
-							<div class="atac"></div>
-							<div class="defensa"></div>
-						</div>
-					</article>
-					<article class="card">
-						<h3>Nom pokemon</h3>
-						<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" alt="pokemon 1"  height="100">
-						<div class="dades">
-							<div class="atac"></div>
-							<div class="defensa"></div>
-						</div>
-					</article>
-					<article class="card">
-						<h3>Nom pokemon</h3>
-						<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" alt="pokemon 1"  height="100">
-						<div class="dades">
-							<div class="atac"></div>
-							<div class="defensa"></div>
-						</div>
-					</article>
-					<article class="card">
-						<h3>Nom pokemon</h3>
-						<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" alt="pokemon 1"  height="100">
-						<div class="dades">
-							<div class="atac"></div>
-							<div class="defensa"></div>
-						</div>
-					</article>
-					<article class="card">
-						<h3>Nom pokemon</h3>
-						<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" alt="pokemon 1"  height="100">
-						<div class="dades">
-							<div class="atac"></div>
-							<div class="defensa"></div>
-						</div>
-					</article>
-					<article class="card">
-						<h3>Nom pokemon</h3>
-						<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" alt="pokemon 1"  height="100">
-						<div class="dades">
-							<div class="atac"></div>
-							<div class="defensa"></div>
-						</div>
-					</article>
-					<article class="card">
-						<h3>Nom pokemon</h3>
-						<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" alt="pokemon 1"  height="100">
-						<div class="dades">
-							<div class="atac"></div>
-							<div class="defensa"></div>
-						</div>
-					</article>
-					<article class="card">
-						<h3>Nom pokemon</h3>
-						<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" alt="pokemon 1"  height="100">
-						<div class="dades">
-							<div class="atac"></div>
-							<div class="defensa"></div>
-						</div>
-					</article>
-					<article class="card">
-						<h3>Nom pokemon</h3>
-						<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" alt="pokemon 1"  height="100">
-						<div class="dades">
-							<div class="atac"></div>
-							<div class="defensa"></div>
-						</div>
-					</article>
-					<article class="card">
-						<h3>Nom pokemon</h3>
-						<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" alt="pokemon 1"  height="100">
-						<div class="dades">
-							<div class="atac"></div>
-							<div class="defensa"></div>
-						</div>
-					</article>
-				</section>
-			<section id="list">List</section>
+			<section id="list">
+				<div class="actions">
+					<input type="search" placeholder="Filter by name...">
+					<button class="button-blue">Reload</button>
+				</div>
+				<ul class="cards">
+					<li class="card">
+						<a href="index.html?pokeID=1">
+							<div class="background type1-grass type2-poison">
+								<div class="name-container">
+									<span class="name">Bulbasaur</span>
+								</div>
+								<div class="image-container">
+									<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" alt="Bulbasaur">
+								</div>
+								<div class="stats">
+									<div class="attack-container">
+										<span class="attack">65</span>
+									</div>
+									<div class="defense-container">
+										<span class="defense">65</span>
+									</div>
+								</div>
+							</div>
+						</a>
+					</li>
+					<li class="card">
+						<a href="index.html?pokeID=1">
+							<div class="background type1-grass type2-poison">
+								<div class="name-container">
+									<span class="name">Bulbasaur</span>
+								</div>
+								<div class="image-container">
+									<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" alt="Bulbasaur">
+								</div>
+								<div class="stats">
+									<div class="attack-container">
+										<span class="attack">65</span>
+									</div>
+									<div class="defense-container">
+										<span class="defense">65</span>
+									</div>
+								</div>
+							</div>
+						</a>
+					</li>
+					<li class="card">
+						<a href="index.html?pokeID=1">
+							<div class="background type1-grass type2-poison">
+								<div class="name-container">
+									<span class="name">Bulbasaur</span>
+								</div>
+								<div class="image-container">
+									<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" alt="Bulbasaur">
+								</div>
+								<div class="stats">
+									<div class="attack-container">
+										<span class="attack">65</span>
+									</div>
+									<div class="defense-container">
+										<span class="defense">65</span>
+									</div>
+								</div>
+							</div>
+						</a>
+					</li>
+					<li class="card">
+						<a href="index.html?pokeID=1">
+							<div class="background type1-grass type2-poison">
+								<div class="name-container">
+									<span class="name">Bulbasaur</span>
+								</div>
+								<div class="image-container">
+									<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" alt="Bulbasaur">
+								</div>
+								<div class="stats">
+									<div class="attack-container">
+										<span class="attack">65</span>
+									</div>
+									<div class="defense-container">
+										<span class="defense">65</span>
+									</div>
+								</div>
+							</div>
+						</a>
+					</li>
+					<li class="card">
+						<a href="index.html?pokeID=1">
+							<div class="background type1-grass type2-poison">
+								<div class="name-container">
+									<span class="name">Bulbasaur</span>
+								</div>
+								<div class="image-container">
+									<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" alt="Bulbasaur">
+								</div>
+								<div class="stats">
+									<div class="attack-container">
+										<span class="attack">65</span>
+									</div>
+									<div class="defense-container">
+										<span class="defense">65</span>
+									</div>
+								</div>
+							</div>
+						</a>
+					</li>
+					<li class="card">
+						<a href="index.html?pokeID=1">
+							<div class="background type1-grass type2-poison">
+								<div class="name-container">
+									<span class="name">Bulbasaur</span>
+								</div>
+								<div class="image-container">
+									<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" alt="Bulbasaur">
+								</div>
+								<div class="stats">
+									<div class="attack-container">
+										<span class="attack">65</span>
+									</div>
+									<div class="defense-container">
+										<span class="defense">65</span>
+									</div>
+								</div>
+							</div>
+						</a>
+					</li>
+					<li class="card">
+						<a href="index.html?pokeID=1">
+							<div class="background type1-grass type2-poison">
+								<div class="name-container">
+									<span class="name">Bulbasaur</span>
+								</div>
+								<div class="image-container">
+									<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" alt="Bulbasaur">
+								</div>
+								<div class="stats">
+									<div class="attack-container">
+										<span class="attack">65</span>
+									</div>
+									<div class="defense-container">
+										<span class="defense">65</span>
+									</div>
+								</div>
+							</div>
+						</a>
+					</li>
+					<li class="card">
+						<a href="index.html?pokeID=1">
+							<div class="background type1-grass type2-poison">
+								<div class="name-container">
+									<span class="name">Bulbasaur</span>
+								</div>
+								<div class="image-container">
+									<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" alt="Bulbasaur">
+								</div>
+								<div class="stats">
+									<div class="attack-container">
+										<span class="attack">65</span>
+									</div>
+									<div class="defense-container">
+										<span class="defense">65</span>
+									</div>
+								</div>
+							</div>
+						</a>
+					</li>
+					<li class="card">
+						<a href="index.html?pokeID=1">
+							<div class="background type1-grass type2-poison">
+								<div class="name-container">
+									<span class="name">Bulbasaur</span>
+								</div>
+								<div class="image-container">
+									<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" alt="Bulbasaur">
+								</div>
+								<div class="stats">
+									<div class="attack-container">
+										<span class="attack">65</span>
+									</div>
+									<div class="defense-container">
+										<span class="defense">65</span>
+									</div>
+								</div>
+							</div>
+						</a>
+					</li>
+					<li class="card">
+						<a href="index.html?pokeID=1">
+							<div class="background type1-grass type2-poison">
+								<div class="name-container">
+									<span class="name">Bulbasaur</span>
+								</div>
+								<div class="image-container">
+									<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" alt="Bulbasaur">
+								</div>
+								<div class="stats">
+									<div class="attack-container">
+										<span class="attack">65</span>
+									</div>
+									<div class="defense-container">
+										<span class="defense">65</span>
+									</div>
+								</div>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</section>
 			<section id="detail">
 				<div class="pokemon-title">
 					<h2 class="pokemon-name">Bulbasaur<span class="pokemon-number">#001</span>
@@ -165,6 +309,9 @@
 							</ul>
 						</div>
 					</div>
+				</div>
+				<div class="more-link">
+					<a class="button button-orange" href="index.html">Explore More Pokémon</a>
 				</div>
 			</section>
 		</main>
