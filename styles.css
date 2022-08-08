@@ -19,6 +19,8 @@
     --card-border: #212121;
     --card-stats-border: #212121;
     --card-name-background: rgba(0, 0, 0, .5);
+    --card-type1-background: #a4acaf;
+    --card-type2-background: #a4acaf;
     --card-name: #f5f5f5;
     --card-attack: #ef9a9a;
     --card-defense: #81d4fa;
@@ -205,7 +207,7 @@ section {
     width: 138px;
     border: 6px solid var(--text);
     border-radius: 3px;
-    background-image: linear-gradient(to right, var(--grass) 50%, var(--poison) 50%);
+    background-image: linear-gradient(to right, var(--card-type1-background) 50%, var(--card-type2-background) 50%);
     display: flex;
     flex-direction: column;
 }
@@ -419,7 +421,7 @@ section {
 
 /* BATTLE */
 
-/* TYPES */
+/* TYPES PILL */
 
 .bug {
     background-color: var(--bug);
@@ -501,6 +503,152 @@ section {
 .water {
     background-color: var(--water);
     color: var(--white);
+}
+
+/* TYPES BACKGROUND */
+
+.type1-bug {
+    --card-type1-background: var(--bug);
+}
+
+.type2-bug {
+    --card-type2-background: var(--bug);
+}
+
+.type1-dark {
+    --card-type1-background: var(--dark);
+}
+
+.type2-dark {
+    --card-type2-background: var(--dark);
+}
+
+.type1-dragon {
+    --card-type1-background: var(--dragon);
+}
+
+.type2-dragon {
+    --card-type2-background: var(--dragon);
+}
+
+.type1-electric {
+    --card-type1-background: var(--electric);
+}
+
+.type2-electric {
+    --card-type2-background: var(--electric);
+}
+
+.type1-fairy {
+    --card-type1-background: var(--fairy);
+}
+
+.type2-fairy {
+    --card-type2-background: var(--fairy);
+}
+
+.type1-fighting {
+    --card-type1-background: var(--fighting);
+}
+
+.type2-fighting {
+    --card-type2-background: var(--fighting);
+}
+
+.type1-fire {
+    --card-type1-background: var(--fire);
+}
+
+.type2-fire {
+    --card-type2-background: var(--fire);
+}
+
+.type1-flying {
+    --card-type1-background: var(--flying);
+}
+
+.type2-flying {
+    --card-type2-background: var(--flying);
+}
+
+.type1-ghost {
+    --card-type1-background: var(--ghost);
+}
+
+.type2-ghost {
+    --card-type2-background: var(--ghost);
+}
+
+.type1-grass {
+    --card-type1-background: var(--grass);
+}
+
+.type2-grass {
+    --card-type2-background: var(--grass);
+}
+
+.type1-ground {
+    --card-type1-background: var(--ground);
+}
+
+.type2-ground {
+    --card-type2-background: var(--ground);
+}
+
+.type1-ice {
+    --card-type1-background: var(--ice);
+}
+
+.type2-ice {
+    --card-type2-background: var(--ice);
+}
+
+.type1-normal {
+    --card-type1-background: var(--normal);
+}
+
+.type2-normal {
+    --card-type2-background: var(--normal);
+}
+
+.type1-poison {
+    --card-type1-background: var(--poison);
+}
+
+.type2-poison {
+    --card-type2-background: var(--poison);
+}
+
+.type1-psychic {
+    --card-type1-background: var(--psychic);
+}
+
+.type2-psychic {
+    --card-type2-background: var(--psychic);
+}
+
+.type1-rock {
+    --card-type1-background: var(--rock);
+}
+
+.type2-rock {
+    --card-type2-background: var(--rock);
+}
+
+.type1-steel {
+    --card-type1-background: var(--steel);
+}
+
+.type2-steel {
+    --card-type2-background: var(--steel);
+}
+
+.type1-water {
+    --card-type1-background: var(--water);
+}
+
+.type2-water {
+    --card-type2-background: var(--water);
 }
 
 /* OTHER STYLES */
