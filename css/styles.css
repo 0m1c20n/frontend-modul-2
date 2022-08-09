@@ -159,12 +159,17 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-bottom: 30px;
+}
 
-    /* TEST */
-    min-height: 100px;
+/* LOADING */
+
+#loading {
+    padding-top: 30px;
 }
 
 /* LIST */
+
 #list {
     display: flex;
     flex-direction: column;
@@ -181,13 +186,15 @@ section {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 #list .actions input {
     border: 1px solid var(--background-body);
     border-radius: 5px;
     padding: 10px 5px 10px 36px;
-    background: transparent url('assets/icons/search.svg') no-repeat 10px center;
+    background: transparent url('/assets/icons/search.svg') no-repeat 10px center;
 }
 
 #list .cards {
@@ -259,9 +266,9 @@ section {
 }
 
 /* DETAIL */
+
 #detail {
     flex-direction: column;
-    padding-bottom: 30px;
 }
 
 #detail .pokemon-title {
@@ -416,8 +423,6 @@ section {
     padding-top: 40px;
 
 }
-
-
 
 /* BATTLE */
 
@@ -691,7 +696,7 @@ button:hover,
 }
 
 .hide {
-    display: none;
+    display: none !important;
 }
 
 .nowrap {
@@ -699,6 +704,7 @@ button:hover,
 }
 
 /* RESPONSIVE */
+
 @media (min-width: 425px) {
     #detail .pokemon-title h2 {
         font-size: 36px;
