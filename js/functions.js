@@ -24,6 +24,10 @@ function setListMode() {
     document.getElementById("loading").classList.toggle("hide");
 }
 
+function toggleResponsiveMenu() {
+    document.getElementById("responsive-menu").classList.toggle("hide");
+}
+
 function main() {
     console.log('JavaScript working.')
 }
