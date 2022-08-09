@@ -25,6 +25,7 @@
     --card-attack: #ef9a9a;
     --card-defense: #81d4fa;
     --nav-height: 70px;
+    --title-height: 300px;
 
     /* TYPE COLORS */
     --bug: #729f3f;
@@ -51,9 +52,10 @@
 
 body {
     margin: 0;
-    background-color: var(--background-body);
+    background: var(--background-body) url('/assets/images/body_bg.png') center;
     color: var(--text);
     font-family: Helvetica, Arial, sans-serif;
+    padding-bottom: 50px;
 }
 
 a,
@@ -131,7 +133,7 @@ nav {
 }
 
 .title {
-    height: 300px;
+    height: var(--title-height);
     color: var(--white);
     margin-top: var(--nav-height);
     display: flex;
@@ -148,7 +150,8 @@ nav {
 main {
     max-width: 1280px;
     margin: 0 auto;
-    background-color: var(--background-main);
+    background: var(--background-main) url('/assets/images/main_bg.png') center;
+    padding-bottom: 40px;
 }
 
 section {
@@ -159,18 +162,12 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-bottom: 30px;
-}
-
-/* LOADING */
-
-#loading {
-    padding-top: 30px;
 }
 
 /* LIST */
 
 #list {
+    padding: 30px 0;
     display: flex;
     flex-direction: column;
 }
@@ -182,7 +179,7 @@ section {
 }
 
 #list .actions {
-    padding: 20px 0;
+    padding-bottom: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -268,6 +265,7 @@ section {
 /* DETAIL */
 
 #detail {
+    padding: 30px 0;
     flex-direction: column;
 }
 
@@ -420,8 +418,7 @@ section {
 
 #detail .more-link {
     text-align: center;
-    padding-top: 40px;
-
+    padding-top: 30px;
 }
 
 /* BATTLE */
