@@ -267,7 +267,7 @@ section {
 }
 
 #list .card .name-container {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: bold;
     line-height: 22px;
     text-align: center;
@@ -279,7 +279,7 @@ section {
     line-height: 0;
 }
 
-#list .card img {
+#list .card .sprite {
     width: 100%;
 }
 
@@ -294,11 +294,11 @@ section {
 #list .card .attack-container,
 #list .card .defense-container {
     border: 2px solid var(--card-stats-border);
-    font-size: 14px;
+    font-size: 12px;
     font-weight: bold;
     border-radius: 50%;
-    height: 28px;
-    width: 28px;
+    height: 26px;
+    width: 26px;
     display: flex;
     align-items: center;
     justify-content: center;
