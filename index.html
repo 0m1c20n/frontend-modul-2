@@ -4,6 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href="css/styles.css" rel="stylesheet">
+		<link rel="icon" href="assets/icons/favicon.ico">
 		<title>Pokédex | PAC 2</title>
 	</head>
 	<body>
@@ -27,11 +28,14 @@
 							</a>
 						</li>
 					</ul>
-					<div class="nav-item right theme">
-						<button>Theme</button>
+					<div class="nav-item right actions">
+						<button onclick="toggleTheme()"><img class="theme-button-img" src="assets/icons/sun.svg" alt="Theme"></button>
+						<button onclick="toggleAudio()"><img class="audio-button-img" src="assets/icons/mute.svg" alt="Audio"></button>
 					</div>
 					<div class="nav-item right menu-btn">
-						<img onclick="toggleResponsiveMenu()" src="assets/icons/menu.svg">
+						<button onclick="toggleResponsiveMenu()">
+							<img src="assets/icons/menu.svg" alt="Menu">
+						</button>
 					</div>
 				</div>
 			</nav>
@@ -39,19 +43,20 @@
 				<ul class="left links">
 					<li class="menu-item">
 						<a href="index.html">
-							<img class="nav-icon" src="assets/icons/pokeball.svg">
+							<img class="nav-icon" src="assets/icons/pokeball.svg" alt="Pokédex">
 							<span>Pokédex</span>
 						</a>
 					</li>
 					<li class="menu-item">
 						<a href="battle.html">
-							<img class="nav-icon" src="assets/icons/pokemon-gym.svg">
+							<img class="nav-icon" src="assets/icons/pokemon-gym.svg" alt="Battle">
 							<span>Battle</span>
 						</a>
 					</li>
 				</ul>
-				<div class="menu-item right theme">
-					<button>Theme</button>
+				<div class="menu-item right actions">
+					<button onclick="toggleTheme()"><img class="theme-button-img" src="assets/icons/sun.svg" alt="Theme"></button>
+					<button onclick="toggleAudio()"><img class="audio-button-img" src="assets/icons/mute.svg" alt="Audio"></button>
 				</div>
 			</div>
 			<div class="title">
@@ -64,7 +69,7 @@
 			</section>
 			<section id="list" class="hide">
 				<div class="actions">
-					<input type="search" placeholder="Filter by name...">
+					<input type="search" id="name-filter" placeholder="Filter by name..." oninput="filterByName()">
 					<button class="button-blue" onclick="reload()">Reload</button>
 				</div>
 				<ul class="cards">
@@ -341,6 +346,7 @@
 			</section>
 		</main>
 		<footer>
+			<audio id="audio" src="assets/audio/pokemon.mp3" loop></audio>
 			<script src="js/functions.js"></script>
 		</footer>
 	</body>

@@ -93,7 +93,7 @@ nav {
 }
 
 .nav-item.links,
-.nav-item.theme {
+.nav-item.actions {
     display: none;
 }
 
@@ -140,9 +140,22 @@ nav {
     height: 30px;
 }
 
+header button {
+    background: transparent;
+    padding: 10px;
+    width: auto;
+}
+
+header button:hover {
+    background: transparent;
+}
+
+header button img {
+    height: 30px;
+}
+
 .menu-btn img {
     height: 36px;
-    cursor: pointer;
 }
 
 #responsive-menu {
@@ -153,7 +166,7 @@ nav {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* align-items: center; */
+    z-index: 1;
 }
 
 #responsive-menu .links {
@@ -177,7 +190,7 @@ nav {
     background-color: var(--background-menu-hover);
 }
 
-#responsive-menu .theme {
+#responsive-menu .actions {
     border-top: 1px solid var(--border-menu);
     padding: 10px 20px;
 }
@@ -256,6 +269,10 @@ section {
     list-style: none;
 }
 
+#list .card:hover {
+    transform: scale(1.05);
+}
+
 #list .card .background {
     height: 198px;
     width: 138px;
@@ -267,7 +284,7 @@ section {
 }
 
 #list .card .name-container {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
     line-height: 22px;
     text-align: center;
@@ -294,11 +311,11 @@ section {
 #list .card .attack-container,
 #list .card .defense-container {
     border: 2px solid var(--card-stats-border);
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
     border-radius: 50%;
-    height: 26px;
-    width: 26px;
+    height: 28px;
+    width: 28px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -769,7 +786,7 @@ button:hover,
     }
 
     .nav-item.links,
-    .nav-item.theme {
+    .nav-item.actions {
         display: flex;
     }
 }

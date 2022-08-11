@@ -4,6 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href="css/styles.css" rel="stylesheet">
+		<link rel="icon" href="assets/icons/favicon.ico">
 		<title>Pokédex | PAC 2</title>
 	</head>
 	<body>
@@ -27,8 +28,9 @@
 							</a>
 						</li>
 					</ul>
-					<div class="nav-item right theme">
-						<button class="button-blue">Theme</button>
+					<div class="nav-item right actions">
+						<button onclick="toggleTheme()"><img class="theme-button-img" src="assets/icons/sun.svg"></button>
+						<button onclick="toggleAudio()"><img class="audio-button-img" src="assets/icons/mute.svg"></button>
 					</div>
 					<div class="nav-item right menu-btn">
 						<img onclick="toggleResponsiveMenu()" src="assets/icons/menu.svg">
@@ -50,8 +52,9 @@
 						</a>
 					</li>
 				</ul>
-				<div class="menu-item right theme">
-					<button class="button-blue">Theme</button>
+				<div class="menu-item right actions">
+					<button onclick="toggleTheme()"><img class="theme-button-img" src="assets/icons/sun.svg"></button>
+					<button onclick="toggleAudio()"><img class="audio-button-img" src="assets/icons/mute.svg"></button>
 				</div>
 			</div>
 			<div class="title">
@@ -64,6 +67,7 @@
 			</section>
 		</main>
 		<footer>
+			<audio id="audio" src="assets/audio/battle.mp3" loop></audio>
 			<script src="js/functions.js"></script>
 		</footer>
 	</body>

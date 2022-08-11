@@ -1,7 +1,14 @@
 let POKEMON = [];
+let THEME = 'light';
 const IGNORE_POKEMON_ID = [];
 main();
+getLocalStorage();
 setPageMode();
+
+function getLocalStorage() {
+    THEME = localStorage.getItem('pac2-theme') || 'light';
+    setTheme();
+}
 
 function setPageMode() {
     const path = window.location.pathname;
@@ -21,12 +28,11 @@ function setDetailMode(id) {
 }
 
 async function setListMode() {
-    console.log('Load Pokémon list');
     document.getElementById("list").classList.toggle("hide");
     document.getElementById("loading").classList.toggle("hide");
     POKEMON = await getAllPokemon();
     const pokemonList = await generateRandomPokemonList();
-    console.log('pokemon', pokemonList);
+    console.log('Pokémon', pokemonList);
     renderPokemonList(pokemonList);
 }
 
@@ -89,7 +95,7 @@ async function generateRandomPokemonList() {
 function renderPokemonList(pokemonList) {
     for (let i = 0; i < pokemonList.length; i++) {
         const pokemonWrapper = document.getElementById('pokemon-' + (i + 1));
-        const name = pokemonList[i].is_default ? pokemonList[i].name.toUpperCase() : pokemonList[i].name.toUpperCase() + " &#10024;";
+        const name = pokemonList[i].is_default ? pokemonList[i].name : pokemonList[i].name + " &#10024;";
         pokemonWrapper.getElementsByClassName('name')[0].innerHTML = name;
         pokemonWrapper.getElementsByClassName('sprite')[0].src = pokemonList[i].image;
         pokemonWrapper.getElementsByClassName('attack')[0].innerHTML = pokemonList[i].attack;
@@ -101,10 +107,64 @@ function renderPokemonList(pokemonList) {
 
 async function reload() {
     const pokemonList = await generateRandomPokemonList();
-    console.log('pokemon', pokemonList);
+    console.log('Pokémon', pokemonList);
     renderPokemonList(pokemonList);
 }
 
+function filterByName() {
+    const value = document.getElementById("name-filter").value.toUpperCase();
+    const cards = document.getElementsByClassName('card');
+    if (value.length >= 3) {
+        for (let i = 0; i < cards.length; i++) {
+            const name = cards[i].getElementsByClassName('name')[0].innerHTML.toUpperCase();
+            cards[i].style.display = name.includes(value) ? "block" : "none";
+        }
+    }
+    else {
+        for (let i = 0; i < cards.length; i++) {
+            cards[i].style.display = "block";
+        }
+    }
+}
+
+function toggleAudio() {
+    const audio = document.getElementById('audio');
+    const audioButtons = document.getElementsByClassName('audio-button-img');
+    if (audio.paused) {
+        audio.play();
+        for (let i = 0; i < audioButtons.length; i++) {
+            audioButtons[i].src = '/assets/icons/volume.svg';
+        }
+    }
+    else {
+        audio.muted = !audio.muted;
+        for (let i = 0; i < audioButtons.length; i++) {
+            audioButtons[i].src = audio.muted ? '/assets/icons/mute.svg' : '/assets/icons/volume.svg';
+        }
+    }
+}
+
+function toggleTheme() {
+    switch (THEME) {
+        case 'light':
+            THEME = 'dark';
+            break;
+        case 'dark':
+            THEME = 'light';
+            break;
+    }
+    localStorage.setItem('pac2-theme', THEME);
+    setTheme();
+}
+
+
+function setTheme() {
+    const themeButtons = document.getElementsByClassName('theme-button-img');
+    for (let i = 0; i < themeButtons.length; i++) {
+        themeButtons[i].src = THEME == 'dark' ? '/assets/icons/moon.svg' : '/assets/icons/sun.svg';
+    }
+}
+
 function main() {
-    console.log('JavaScript working.')
+    console.log('JavaScript working.');
 }
