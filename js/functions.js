@@ -21,19 +21,25 @@ function setPageMode() {
     }
 }
 
-function setDetailMode(id) {
+async function setDetailMode(id) {
     console.log('Load pokeID', id);
-    document.getElementById("detail").classList.toggle("hide");
-    document.getElementById("loading").classList.toggle("hide");
+    const pokemon = await getPokemon(id);
+    if (pokemon === 'NOT-FOUND' || pokemon === 'NO-IMAGE') {
+        document.getElementById("not-found").classList.toggle("hide");
+        document.getElementById("loading").classList.toggle("hide");
+    }
+    else {
+        renderPokemonDetail(pokemon);
+    }
+
 }
 
 async function setListMode() {
-    document.getElementById("list").classList.toggle("hide");
-    document.getElementById("loading").classList.toggle("hide");
     POKEMON = await getAllPokemon();
     const pokemonList = await generateRandomPokemonList();
     console.log('Pokémon', pokemonList);
     renderPokemonList(pokemonList);
+
 }
 
 function toggleResponsiveMenu() {
@@ -43,6 +49,7 @@ function toggleResponsiveMenu() {
 async function getAllPokemon() {
     const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0');
     const data = await response.json();
+    console.log('data', data)
     return data.results;
 }
 
@@ -92,17 +99,105 @@ async function generateRandomPokemonList() {
     return pokemonList;
 }
 
+async function getPokemon(id) {
+    const response = await fetch('https://pokeapi.co/api/v2/pokemon/' + id);
+    if (!response.ok) {
+        return 'NOT-FOUND';
+    }
+    const data = await response.json();
+    const officialArtwork = data.sprites.other['official-artwork'].front_default;
+    if (officialArtwork) {
+        const url = data.is_default ? data.species.url : data.forms.find(f => f.name === data.name).url;
+        const id = data.id;
+        const response2 = await fetch(url);
+        const data2 = await response2.json();
+        const name = data2.names.find(n => n.language.name === "en").name;
+        const type1 = data.types.find(t => t.slot === 1).type.name;
+        const type2 = data.types.find(t => t.slot === 2)?.type.name;
+        const atk = data.stats.find(s => s.stat.name === "attack").base_stat;
+        const def = data.stats.find(s => s.stat.name === "defense").base_stat;
+        const spAtk = data.stats.find(s => s.stat.name === "special-attack").base_stat;
+        const spDef = data.stats.find(s => s.stat.name === "special-defense").base_stat;
+        const attack = atk > spAtk ? atk : spAtk;
+        const defense = def > spDef ? def : spDef;
+        const spriteFront = data.sprites.front_default;
+        const spriteBack = data.sprites.back_default;
+        const pokemon = {
+            id,
+            name,
+            image: officialArtwork,
+            type1,
+            type2,
+            attack,
+            defense,
+            spriteFront,
+            spriteBack
+        }
+        return pokemon;
+    }
+    else {
+        return 'NO-IMAGE';
+    }
+
+}
+
 function renderPokemonList(pokemonList) {
     for (let i = 0; i < pokemonList.length; i++) {
         const pokemonWrapper = document.getElementById('pokemon-' + (i + 1));
         const name = pokemonList[i].is_default ? pokemonList[i].name : pokemonList[i].name + " &#10024;";
         pokemonWrapper.getElementsByClassName('name')[0].innerHTML = name;
-        pokemonWrapper.getElementsByClassName('sprite')[0].src = pokemonList[i].image;
+        const pokemonImage = pokemonWrapper.getElementsByClassName('sprite')[0];
+        pokemonImage.src = pokemonList[i].image;
+        pokemonImage.alt = pokemonList[i].name;
         pokemonWrapper.getElementsByClassName('attack')[0].innerHTML = pokemonList[i].attack;
         pokemonWrapper.getElementsByClassName('defense')[0].innerHTML = pokemonList[i].defense;
         pokemonWrapper.getElementsByClassName('background')[0].setAttribute("class", "background" + " type1-" + pokemonList[i].type1 + " type2-" + (pokemonList[i].type2 ? pokemonList[i].type2 : pokemonList[i].type1));
         pokemonWrapper.getElementsByClassName('link')[0].setAttribute("href", "index.html?pokeID=" + pokemonList[i].id);
     }
+    if (document.getElementById("list").classList.contains('hide')) {
+        document.getElementById("list").classList.toggle("hide");
+        document.getElementById("loading").classList.toggle("hide");
+    }
+}
+
+function renderPokemonDetail(pokemon) {
+    console.log('Pokémon', pokemon)
+    const pokemonWrapper = document.getElementById('detail');
+    pokemonWrapper.getElementsByClassName('pokemon-name')[0].innerHTML = pokemon.name;
+    pokemonWrapper.getElementsByClassName('pokemon-number')[0].innerHTML = '#' + pokemon.id;
+    pokemonWrapper.getElementsByClassName('image')[0].src = pokemon.image;
+    pokemonWrapper.getElementsByClassName('image')[0].alt = pokemon.name;
+    pokemonWrapper.getElementsByClassName('type-1')[0].innerHTML = pokemon.type1;
+    pokemonWrapper.getElementsByClassName('type-1')[0].setAttribute("class", "type type-1 " + pokemon.type1);
+    if (pokemon.type2) {
+        pokemonWrapper.getElementsByClassName('type-2')[0].innerHTML = pokemon.type2;
+        pokemonWrapper.getElementsByClassName('type-2')[0].setAttribute("class", "type type-2 " + pokemon.type2);
+    }
+    else {
+        pokemonWrapper.getElementsByClassName('type-2')[0].classList.toggle("hide");
+
+    }
+    pokemonWrapper.getElementsByClassName('attack-number')[0].innerHTML = pokemon.attack;
+    pokemonWrapper.getElementsByClassName('attack')[0].style.width = ((pokemon.attack / 255) * 100) + '%';
+    pokemonWrapper.getElementsByClassName('defense-number')[0].innerHTML = pokemon.defense;
+    pokemonWrapper.getElementsByClassName('defense')[0].style.width = ((pokemon.defense / 255) * 100) + '%';
+    if (!pokemon.spriteFront && !pokemon.spriteBack) {
+        pokemonWrapper.getElementsByClassName('pokemon-sprites')[0].classList.toggle("hide");
+    }
+    else {
+        pokemonWrapper.getElementsByClassName('front-default-sprite')[0].src = pokemon.spriteFront;
+        if (pokemon.spriteBack) {
+            pokemonWrapper.getElementsByClassName('back-default-sprite')[0].src = pokemon.spriteBack;
+        }
+        else {
+            pokemonWrapper.getElementsByClassName('back-default')[0].classList.toggle("hide");
+        }
+
+    }
+
+    // pokemonWrapper.getElementsByClassName('background')[0].setAttribute("class", "background" + " type1-" + pokemonList[i].type1 + " type2-" + (pokemonList[i].type2 ? pokemonList[i].type2 : pokemonList[i].type1));
+    pokemonWrapper.classList.toggle("hide");
+    document.getElementById("loading").classList.toggle("hide");
 }
 
 async function reload() {

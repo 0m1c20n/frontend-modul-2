@@ -67,6 +67,13 @@
 			<section id="loading">
 				<img src="assets/images/loading.gif" alt="Loading">
 			</section>
+			<section id="not-found" class="hide">
+				<h2>Pokémon not found</h2>
+				<img src="assets/images/not-found.svg" alt="Not found">
+				<div class="more-link">
+					<a class="button button-orange" href="index.html">Explore More Pokémon</a>
+				</div>
+			</section>
 			<section id="list" class="hide">
 				<div class="actions">
 					<input type="search" id="name-filter" placeholder="Filter by name..." oninput="filterByName()">
@@ -277,21 +284,23 @@
 			</section>
 			<section id="detail" class="hide">
 				<div class="pokemon-title">
-					<h2 class="pokemon-name">Bulbasaur<span class="pokemon-number">#001</span>
+					<h2>
+						<span class="pokemon-name"></span>
+						<span class="pokemon-number"></span>
 					</h2>
 				</div>
 				<div class="pokemon-details">
 					<div class="column-6">
 						<div class="pokemon-profile">
-							<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" alt="Bulbasaur">
+							<img class="image" src="" alt="">
 						</div>
 					</div>
 					<div class="column-6">
 						<div class="pokemon-type">
 							<h3>Type</h3>
 							<ul>
-								<li class="type grass">Grass</li>
-								<li class="type poison">Poison</li>
+								<li class="type type-1"></li>
+								<li class="type type-2"></li>
 							</ul>
 						</div>
 						<div class="pokemon-stats">
@@ -300,19 +309,19 @@
 								<li class="stat">
 									<div class="text nowrap">
 										<span class="label">Attack</span>
-										<span class="attack-number">65</span>
+										<span class="attack-number"></span>
 									</div>
 									<div class="bar-container">
-										<div class="attack" style="width: calc((65/255)*100%);"></div>
+										<div class="attack"></div>
 									</div>
 								</li>
 								<li class="stat">
 									<div class="text">
 										<span class="label">Defense</span>
-										<span class="defense-number">65</span>
+										<span class="defense-number"></span>
 									</div>
 									<div class="bar-container">
-										<div class="defense" style="width: calc((65/255)*100%);"></div>
+										<div class="defense"></div>
 									</div>
 								</li>
 							</ul>
@@ -323,7 +332,7 @@
 								<li class="sprite front-default">
 									<div class="sprite-container">
 										<div class="img-bg">
-											<img class="front-default-sprite" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="Front default">
+											<img class="front-default-sprite" src="" alt="Front default">
 										</div>
 									</div>
 									<span class="label">Front default</span>
@@ -331,7 +340,7 @@
 								<li class="sprite back-default">
 									<div class="sprite-container">
 										<div class="img-bg">
-											<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/1.png" alt="Back default">
+											<img class="back-default-sprite" src="" alt="Back default">
 										</div>
 									</div>
 									<span class="label">Back default</span>
