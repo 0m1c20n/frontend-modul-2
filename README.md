@@ -1,7 +1,7 @@
 # PAC 2 - JavaScript
 ## _Pokédex_
 ### Tasques
-- [x] Conulta aleatòria la API
+- [x] Consulta aleatòria la API
 - [x] Informació ampliada de cada Pokémon
 - [x] Filtre de cerca
 - [x] Combat
