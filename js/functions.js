@@ -1,6 +1,8 @@
 let POKEMON = [];
 let THEME = 'light';
 const IGNORE_POKEMON_ID = [];
+let ATTACKER;
+let DEFENDER;
 getLocalStorage();
 setPageMode();
 
@@ -18,6 +20,9 @@ function setPageMode() {
     else if (path === '/index.html') {
         setListMode();
     }
+    else if (path === '/battle.html') {
+        setBattleMode();
+    }
 }
 
 async function setDetailMode(id) {
@@ -29,7 +34,6 @@ async function setDetailMode(id) {
     else {
         renderPokemonDetail(pokemon);
     }
-
 }
 
 async function setListMode() {
@@ -37,8 +41,21 @@ async function setListMode() {
     document.getElementById("loading").classList.toggle("hide");
     POKEMON = await getAllPokemon();
     const pokemonList = await generateRandomPokemonList();
-    renderPokemonList(pokemonList);
+    renderPokemonList(pokemonList, true);
+}
 
+async function setBattleMode() {
+    document.getElementById("list").classList.toggle("hide");
+    document.getElementById("loading").classList.toggle("hide");
+    POKEMON = await getAllPokemon();
+    const pokemonList = await generateRandomPokemonList();
+    renderPokemonList(pokemonList, false);
+    const cards = document.getElementsByClassName('back');
+    for (let i = 0; i < cards.length; i++) {
+        cards[i].onclick = function () {
+            battleFlipCard(i + 1);
+        }
+    }
 }
 
 function toggleResponsiveMenu() {
@@ -135,14 +152,13 @@ async function getPokemon(id) {
     else {
         return 'NO-IMAGE';
     }
-
 }
 
-function renderPokemonList(pokemonList) {
+function renderPokemonList(pokemonList, list) {
     for (let i = 0; i < pokemonList.length; i++) {
         const pokemonWrapper = document.getElementById('pokemon-' + (i + 1));
-        const name = pokemonList[i].is_default ? pokemonList[i].name : pokemonList[i].name + " &#10024;";
-        pokemonWrapper.getElementsByClassName('name')[0].innerHTML = name;
+        pokemonWrapper.getElementsByClassName('name')[0].innerHTML = pokemonList[i].name;
+        pokemonWrapper.getElementsByClassName('special')[0].setAttribute("class", pokemonList[i].is_default ? "special hide" : "special");
         const pokemonImage = pokemonWrapper.getElementsByClassName('sprite')[0];
         pokemonImage.src = pokemonList[i].image;
         pokemonImage.alt = pokemonList[i].name;
@@ -151,7 +167,9 @@ function renderPokemonList(pokemonList) {
         pokemonWrapper.getElementsByClassName('background')[0].setAttribute("class", "background border" + " type1-" + pokemonList[i].type1 + " type2-" + (pokemonList[i].type2 ? pokemonList[i].type2 : pokemonList[i].type1));
         pokemonWrapper.getElementsByClassName('link')[0].setAttribute("href", "index.html?pokeID=" + pokemonList[i].id);
     }
-    flipCards();
+    if (list) {
+        flipCards(list);
+    }
 }
 
 function renderPokemonDetail(pokemon) {
@@ -191,10 +209,22 @@ function renderPokemonDetail(pokemon) {
     document.getElementById("loading").classList.toggle("hide");
 }
 
-async function reload() {
-    flipCards();
+async function reload(list) {
+    flipCards(list);
+    if (!list) {
+        ATTACKER = null;
+        DEFENDER = null;
+        clearMessage();
+    }
     const pokemonList = await generateRandomPokemonList();
-    renderPokemonList(pokemonList);
+    renderPokemonList(pokemonList, list);
+}
+
+function restart() {
+    flipCards(false);
+    ATTACKER = null;
+    DEFENDER = null;
+    clearMessage();
 }
 
 function filterByName() {
@@ -217,6 +247,7 @@ function toggleAudio() {
     const audio = document.getElementById('audio');
     const audioButtons = document.getElementsByClassName('audio-button-img');
     if (audio.paused) {
+        audio.volume = 0.2;
         audio.play();
         for (let i = 0; i < audioButtons.length; i++) {
             audioButtons[i].src = '/assets/icons/volume.svg';
@@ -243,14 +274,64 @@ function toggleTheme() {
     setTheme();
 }
 
-function flipCards() {
+function flipCards(list) {
     const cards = document.getElementsByClassName('card-inner');
     for (let i = 0; i < cards.length; i++) {
-        setTimeout(() =>
-            cards[i].classList.toggle("flipped"),
-            100 * i
-        );
+        if (list) {
+            setTimeout(() =>
+                cards[i].classList.toggle("flipped"),
+                100 * i
+            );
+        }
+        else {
+            cards[i].classList.remove("flipped")
+        }
     }
+}
+
+function battleFlipCard(id) {
+    const pokemonWrapper = document.getElementById('pokemon-' + (id));
+    if (!ATTACKER) {
+        ATTACKER = {
+            name: pokemonWrapper.getElementsByClassName("name")[0].innerHTML,
+            attack: Number(pokemonWrapper.getElementsByClassName("attack")[0].innerHTML),
+            defense: Number(pokemonWrapper.getElementsByClassName("defense")[0].innerHTML),
+        }
+        pokemonWrapper.getElementsByClassName('card-inner')[0].classList.toggle("flipped");
+    }
+    else if (ATTACKER && !DEFENDER) {
+        DEFENDER = {
+            name: pokemonWrapper.getElementsByClassName("name")[0].innerHTML,
+            attack: Number(pokemonWrapper.getElementsByClassName("attack")[0].innerHTML),
+            defense: Number(pokemonWrapper.getElementsByClassName("defense")[0].innerHTML),
+        }
+        pokemonWrapper.getElementsByClassName('card-inner')[0].classList.toggle("flipped");
+        console.log('ATTACKER', ATTACKER);
+        console.log('DEFENDER', DEFENDER);
+        const message = document.getElementsByClassName("message")[0];
+        let text;
+        if (ATTACKER.attack > DEFENDER.defense) {
+            text = message.getElementsByClassName("text-win")[0];
+            message.classList.toggle("win");
+        }
+        else {
+            text = message.getElementsByClassName("text-loss")[0];
+            message.classList.toggle("loss");
+        }
+        text.getElementsByClassName("attacker")[0].innerHTML = ATTACKER.name;
+        text.getElementsByClassName("defender")[0].innerHTML = DEFENDER.name;
+        text.classList.toggle("hide");
+        document.getElementsByClassName('button-restart')[0].classList.toggle("hide");
+    }
+}
+
+function clearMessage() {
+    const message = document.getElementsByClassName("message")[0];
+    message.classList.remove("win", "loss");
+    message.getElementsByClassName("text-win")[0].classList.add("hide");
+    message.getElementsByClassName("text-loss")[0].classList.add("hide");
+    document.getElementsByClassName('button-restart')[0].classList.add("hide");
+
 }
 
 function setTheme() {

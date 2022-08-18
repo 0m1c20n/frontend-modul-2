@@ -29,11 +29,13 @@
 						</li>
 					</ul>
 					<div class="nav-item right actions">
-						<button onclick="toggleTheme()"><img class="theme-button-img" src="assets/icons/sun.svg"></button>
-						<button onclick="toggleAudio()"><img class="audio-button-img" src="assets/icons/mute.svg"></button>
+						<button onclick="toggleTheme()"><img class="theme-button-img" src="assets/icons/sun.svg" alt="Theme"></button>
+						<button onclick="toggleAudio()"><img class="audio-button-img" src="assets/icons/mute.svg" alt="Audio"></button>
 					</div>
 					<div class="nav-item right menu-btn">
-						<img onclick="toggleResponsiveMenu()" src="assets/icons/menu.svg">
+						<button onclick="toggleResponsiveMenu()">
+							<img src="assets/icons/menu.svg" alt="Menu">
+						</button>
 					</div>
 				</div>
 			</nav>
@@ -41,29 +43,310 @@
 				<ul class="left links">
 					<li class="menu-item">
 						<a href="index.html">
-							<img class="nav-icon" src="assets/icons/pokeball.svg">
+							<img class="nav-icon" src="assets/icons/pokeball.svg" alt="Pokédex">
 							<span>Pokédex</span>
 						</a>
 					</li>
 					<li class="menu-item">
 						<a href="battle.html">
-							<img class="nav-icon" src="assets/icons/pokemon-gym.svg">
+							<img class="nav-icon" src="assets/icons/pokemon-gym.svg" alt="Battle">
 							<span>Battle</span>
 						</a>
 					</li>
 				</ul>
 				<div class="menu-item right actions">
-					<button onclick="toggleTheme()"><img class="theme-button-img" src="assets/icons/sun.svg"></button>
-					<button onclick="toggleAudio()"><img class="audio-button-img" src="assets/icons/mute.svg"></button>
+					<button onclick="toggleTheme()"><img class="theme-button-img" src="assets/icons/sun.svg" alt="Theme"></button>
+					<button onclick="toggleAudio()"><img class="audio-button-img" src="assets/icons/mute.svg" alt="Audio"></button>
 				</div>
 			</div>
 			<div class="title">
-				<h1>Pokédex</h1>
+				<h1>Battle</h1>
 			</div>
 		</header>
 		<main>
 			<section id="loading">
 				<img src="assets/images/loading.gif" alt="Loading">
+			</section>
+			<section id="list" class="hide">
+				<p class="instructions">
+					<strong>How to play:</strong>&nbsp;Click on two cards to start a combat. The first one selected will be the attacker while the other one will be the defender.
+				</p>
+				<ul class="cards battle">
+					<li class="card" id="pokemon-1">
+						<div class="card-inner">
+							<a class="front link" href="">
+								<div class="background">
+									<div class="name-container">
+										<span class="name"></span>
+										<span class="special hide">&#10024;</span>
+									</div>
+									<div class="image-container">
+										<img class="sprite">
+									</div>
+									<div class="stats">
+										<div class="attack-container">
+											<span class="attack"></span>
+										</div>
+										<div class="defense-container">
+											<span class="defense"></span>
+										</div>
+									</div>
+								</div>
+							</a>
+							<div class="back background">
+								<img src="assets/images/poke-ball.png">
+							</div>
+						</div>
+					</li>
+					<li class="card" id="pokemon-2">
+						<div class="card-inner">
+							<a class="front link" href="">
+								<div class="background">
+									<div class="name-container">
+										<span class="name"></span>
+										<span class="special hide">&#10024;</span>
+									</div>
+									<div class="image-container">
+										<img class="sprite">
+									</div>
+									<div class="stats">
+										<div class="attack-container">
+											<span class="attack"></span>
+										</div>
+										<div class="defense-container">
+											<span class="defense"></span>
+										</div>
+									</div>
+								</div>
+							</a>
+							<div class="back background">
+								<img src="assets/images/poke-ball.png">
+							</div>
+						</div>
+					</li>
+					<li class="card" id="pokemon-3">
+						<div class="card-inner">
+							<a class="front link" href="">
+								<div class="background">
+									<div class="name-container">
+										<span class="name"></span>
+										<span class="special hide">&#10024;</span>
+									</div>
+									<div class="image-container">
+										<img class="sprite">
+									</div>
+									<div class="stats">
+										<div class="attack-container">
+											<span class="attack"></span>
+										</div>
+										<div class="defense-container">
+											<span class="defense"></span>
+										</div>
+									</div>
+								</div>
+							</a>
+							<div class="back background">
+								<img src="assets/images/poke-ball.png">
+							</div>
+						</div>
+					</li>
+					<li class="card" id="pokemon-4">
+						<div class="card-inner">
+							<a class="front link" href="">
+								<div class="background">
+									<div class="name-container">
+										<span class="name"></span>
+										<span class="special hide">&#10024;</span>
+									</div>
+									<div class="image-container">
+										<img class="sprite">
+									</div>
+									<div class="stats">
+										<div class="attack-container">
+											<span class="attack"></span>
+										</div>
+										<div class="defense-container">
+											<span class="defense"></span>
+										</div>
+									</div>
+								</div>
+							</a>
+							<div class="back background">
+								<img src="assets/images/poke-ball.png">
+							</div>
+						</div>
+					</li>
+					<li class="card" id="pokemon-5">
+						<div class="card-inner">
+							<a class="front link" href="">
+								<div class="background">
+									<div class="name-container">
+										<span class="name"></span>
+										<span class="special hide">&#10024;</span>
+									</div>
+									<div class="image-container">
+										<img class="sprite">
+									</div>
+									<div class="stats">
+										<div class="attack-container">
+											<span class="attack"></span>
+										</div>
+										<div class="defense-container">
+											<span class="defense"></span>
+										</div>
+									</div>
+								</div>
+							</a>
+							<div class="back background">
+								<img src="assets/images/poke-ball.png">
+							</div>
+						</div>
+					</li>
+					<li class="card" id="pokemon-6">
+						<div class="card-inner">
+							<a class="front link" href="">
+								<div class="background">
+									<div class="name-container">
+										<span class="name"></span>
+										<span class="special hide">&#10024;</span>
+									</div>
+									<div class="image-container">
+										<img class="sprite">
+									</div>
+									<div class="stats">
+										<div class="attack-container">
+											<span class="attack"></span>
+										</div>
+										<div class="defense-container">
+											<span class="defense"></span>
+										</div>
+									</div>
+								</div>
+							</a>
+							<div class="back background">
+								<img src="assets/images/poke-ball.png">
+							</div>
+						</div>
+					</li>
+					<li class="card" id="pokemon-7">
+						<div class="card-inner">
+							<a class="front link" href="">
+								<div class="background">
+									<div class="name-container">
+										<span class="name"></span>
+										<span class="special hide">&#10024;</span>
+									</div>
+									<div class="image-container">
+										<img class="sprite">
+									</div>
+									<div class="stats">
+										<div class="attack-container">
+											<span class="attack"></span>
+										</div>
+										<div class="defense-container">
+											<span class="defense"></span>
+										</div>
+									</div>
+								</div>
+							</a>
+							<div class="back background">
+								<img src="assets/images/poke-ball.png">
+							</div>
+						</div>
+					</li>
+					<li class="card" id="pokemon-8">
+						<div class="card-inner">
+							<a class="front link" href="">
+								<div class="background">
+									<div class="name-container">
+										<span class="name"></span>
+										<span class="special hide">&#10024;</span>
+									</div>
+									<div class="image-container">
+										<img class="sprite">
+									</div>
+									<div class="stats">
+										<div class="attack-container">
+											<span class="attack"></span>
+										</div>
+										<div class="defense-container">
+											<span class="defense"></span>
+										</div>
+									</div>
+								</div>
+							</a>
+							<div class="back background">
+								<img src="assets/images/poke-ball.png">
+							</div>
+						</div>
+					</li>
+					<li class="card" id="pokemon-9">
+						<div class="card-inner">
+							<a class="front link" href="">
+								<div class="background">
+									<div class="name-container">
+										<span class="name"></span>
+										<span class="special hide">&#10024;</span>
+									</div>
+									<div class="image-container">
+										<img class="sprite">
+									</div>
+									<div class="stats">
+										<div class="attack-container">
+											<span class="attack"></span>
+										</div>
+										<div class="defense-container">
+											<span class="defense"></span>
+										</div>
+									</div>
+								</div>
+							</a>
+							<div class="back background">
+								<img src="assets/images/poke-ball.png">
+							</div>
+						</div>
+					</li>
+					<li class="card" id="pokemon-10">
+						<div class="card-inner">
+							<a class="front link" href="">
+								<div class="background">
+									<div class="name-container">
+										<span class="name"></span>
+										<span class="special hide">&#10024;</span>
+									</div>
+									<div class="image-container">
+										<img class="sprite">
+									</div>
+									<div class="stats">
+										<div class="attack-container">
+											<span class="attack"></span>
+										</div>
+										<div class="defense-container">
+											<span class="defense"></span>
+										</div>
+									</div>
+								</div>
+							</a>
+							<div class="back background">
+								<img src="assets/images/poke-ball.png">
+							</div>
+						</div>
+					</li>
+				</ul>
+				<div class="battle-actions">
+					<div class="message">
+						<span class="text-win hide">
+							<span class="attacker"></span>&nbsp;attacks and defeats&nbsp;<span class="defender"></span>
+						</span>
+						<span class="text-loss hide">
+							<span class="attacker"></span>&nbsp;attacks but&nbsp;<span class="defender"></span>&nbsp;resists
+						</span>
+					</div>
+					<div class="buttons">
+						<button class="button-restart button-orange hide" onclick="restart()">Restart</button>
+						<button class="button-blue" onclick="reload(false)">Reload</button>
+					</div>
+				</div>
 			</section>
 		</main>
 		<footer>

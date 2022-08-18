@@ -76,6 +76,7 @@ nav {
     position: fixed;
     top: 0;
     width: 100%;
+    z-index: 1;
 }
 
 
@@ -229,14 +230,16 @@ section {
     align-items: center;
 }
 
-/* LIST */
+/* CARDS */
 
 #list {
     padding: 30px 0;
 }
 
 #list .actions,
-#list .cards {
+#list .cards,
+#list .instructions,
+#list .battle-actions {
     width: 90%;
     margin: 0 auto;
 }
@@ -255,6 +258,11 @@ section {
     border-radius: 5px;
     padding: 10px 5px 10px 36px;
     background: transparent url('/assets/icons/search.svg') no-repeat 10px center;
+}
+
+#list .instructions {
+    padding-bottom: 20px;
+    color: var(--text-secondary);
 }
 
 #list .cards {
@@ -486,7 +494,6 @@ section {
     justify-content: center;
 }
 
-
 #detail .pokemon-sprites .img-bg {
     background-color: var(--background-main);
     border-radius: 50%;
@@ -520,6 +527,55 @@ section {
 }
 
 /* BATTLE */
+
+#list .cards.battle .link {
+    cursor: default;
+    pointer-events: none;
+}
+
+#list .cards.battle .card:hover .back {
+    transform: scale(1.05);
+}
+
+#list .battle-actions,
+#list .battle-actions .message,
+#list .battle-actions .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+#list .battle-actions {
+    padding-top: 20px;
+}
+
+#list .battle-actions .message {
+    border-radius: 5px;
+    padding: 10px;
+    flex: 1;
+    min-width: 300px;
+    font-size: 14px;
+}
+
+#list .battle-actions .message .attacker,
+#list .battle-actions .message .defender {
+    font-weight: bold;
+}
+
+#list .battle-actions .message.win {
+    background-color: #c8e6c9;
+    color: #2e7d32;
+}
+
+#list .battle-actions .message.loss {
+    background-color: #ffcdd2;
+    color: #c62828;
+}
+
+
+
 
 /* TYPES PILL */
 
