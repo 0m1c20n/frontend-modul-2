@@ -335,8 +335,14 @@ function clearMessage() {
 }
 
 function setTheme() {
+    const body = document.getElementsByTagName('body')[0];
+    body.setAttribute('data-theme', THEME == 'dark' ? 'dark' : 'light');
     const themeButtons = document.getElementsByClassName('theme-button-img');
     for (let i = 0; i < themeButtons.length; i++) {
         themeButtons[i].src = THEME == 'dark' ? '/assets/icons/moon.svg' : '/assets/icons/sun.svg';
+    }
+    const ballImages = document.getElementsByClassName('background-ball');
+    for (let i = 0; i < ballImages.length; i++) {
+        ballImages[i].src = THEME == 'dark' ? '/assets/images/dusk-ball.png' : '/assets/images/poke-ball.png';
     }
 }

@@ -79,7 +79,6 @@ nav {
     z-index: 1;
 }
 
-
 .nav-container {
     width: 90%;
     max-width: 895px;
@@ -199,17 +198,30 @@ header button img {
 
 .title {
     height: var(--title-height);
-    color: var(--white);
     margin-top: var(--nav-height);
     display: flex;
     align-items: flex-start;
     justify-content: center;
+}
+
+[data-theme="light"] .title {
     background: url('/assets/images/background-header-light.png') center bottom;
+}
+
+[data-theme="dark"] .title {
+    background: url('/assets/images/background-header-dark.png') center bottom;
 }
 
 .title h1 {
     font-size: 60px;
+}
+
+[data-theme="light"] .title h1 {
     color: var(--text);
+}
+
+[data-theme="dark"] .title h1 {
+    color: var(--white);
 }
 
 main {
