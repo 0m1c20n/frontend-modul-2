@@ -29,7 +29,6 @@ async function setDetailMode(id) {
     const pokemon = await getPokemon(id);
     if (pokemon === 'NOT-FOUND' || pokemon === 'NO-IMAGE') {
         document.getElementById("not-found").classList.toggle("hide");
-        document.getElementById("loading").classList.toggle("hide");
     }
     else {
         renderPokemonDetail(pokemon);
@@ -38,7 +37,6 @@ async function setDetailMode(id) {
 
 async function setListMode() {
     document.getElementById("list").classList.toggle("hide");
-    document.getElementById("loading").classList.toggle("hide");
     POKEMON = await getAllPokemon();
     const pokemonList = await generateRandomPokemonList();
     renderPokemonList(pokemonList, true);
@@ -46,7 +44,6 @@ async function setListMode() {
 
 async function setBattleMode() {
     document.getElementById("list").classList.toggle("hide");
-    document.getElementById("loading").classList.toggle("hide");
     POKEMON = await getAllPokemon();
     const pokemonList = await generateRandomPokemonList();
     renderPokemonList(pokemonList, false);
@@ -71,45 +68,50 @@ async function getAllPokemon() {
 async function generateRandomPokemonList() {
     let pokemonList = [];
     const selectedIDs = [];
-    while (pokemonList.length < 10) {
-        let randomID = Math.floor(Math.random() * POKEMON.length);
-        while (selectedIDs.includes(randomID) || IGNORE_POKEMON_ID.includes(randomID)) {
-            randomID = Math.floor(Math.random() * POKEMON.length);
-        }
-        const response = await fetch(POKEMON[randomID].url);
-        const data = await response.json();
-        const officialArtwork = data.sprites.other['official-artwork'].front_default;
-        if (officialArtwork) {
-            const id = data.id;
-            const response2 = await fetch(data.species.url);
-            const data2 = await response2.json();
-            const name = data2.names.find(n => n.language.name === "en").name;
-            const is_default = data.is_default;
-            const type1 = data.types.find(t => t.slot === 1).type.name;
-            const type2 = data.types.find(t => t.slot === 2)?.type.name;
-            const atk = data.stats.find(s => s.stat.name === "attack").base_stat;
-            const def = data.stats.find(s => s.stat.name === "defense").base_stat;
-            const spAtk = data.stats.find(s => s.stat.name === "special-attack").base_stat;
-            const spDef = data.stats.find(s => s.stat.name === "special-defense").base_stat;
-            const attack = atk > spAtk ? atk : spAtk;
-            const defense = def > spDef ? def : spDef;
-            const pokemon = {
-                id,
-                name,
-                image: officialArtwork,
-                is_default,
-                type1,
-                type2,
-                attack,
-                defense
+    const promises = Array.from({ length: 10 }).map(async () => {
+        let done = false;
+        while (!done) {
+            let randomID = Math.floor(Math.random() * POKEMON.length);
+            while (selectedIDs.includes(randomID) || IGNORE_POKEMON_ID.includes(randomID)) {
+                randomID = Math.floor(Math.random() * POKEMON.length);
             }
-            pokemonList.push(pokemon);
-            selectedIDs.push(randomID);
+            const response = await fetch(POKEMON[randomID].url);
+            const data = await response.json();
+            const officialArtwork = data.sprites.other['official-artwork'].front_default;
+            if (officialArtwork) {
+                const id = data.id;
+                const response2 = await fetch(data.species.url);
+                const data2 = await response2.json();
+                const name = data2.names.find(n => n.language.name === "en").name;
+                const is_default = data.is_default;
+                const type1 = data.types.find(t => t.slot === 1).type.name;
+                const type2 = data.types.find(t => t.slot === 2)?.type.name;
+                const atk = data.stats.find(s => s.stat.name === "attack").base_stat;
+                const def = data.stats.find(s => s.stat.name === "defense").base_stat;
+                const spAtk = data.stats.find(s => s.stat.name === "special-attack").base_stat;
+                const spDef = data.stats.find(s => s.stat.name === "special-defense").base_stat;
+                const attack = atk > spAtk ? atk : spAtk;
+                const defense = def > spDef ? def : spDef;
+                const pokemon = {
+                    id,
+                    name,
+                    image: officialArtwork,
+                    is_default,
+                    type1,
+                    type2,
+                    attack,
+                    defense
+                }
+                pokemonList.push(pokemon);
+                selectedIDs.push(randomID);
+                done = true;
+            }
+            else {
+                IGNORE_POKEMON_ID.push(randomID);
+            }
         }
-        else {
-            IGNORE_POKEMON_ID.push(randomID);
-        }
-    }
+    });
+    await Promise.all(promises);
     return pokemonList;
 }
 
@@ -215,9 +217,13 @@ async function reload(list) {
         ATTACKER = null;
         DEFENDER = null;
         clearMessage();
+        toggleBattleHoverable(true);
     }
     const pokemonList = await generateRandomPokemonList();
-    renderPokemonList(pokemonList, list);
+    setTimeout(() =>
+        renderPokemonList(pokemonList, list),
+        300
+    );
 }
 
 function restart() {
@@ -225,6 +231,7 @@ function restart() {
     ATTACKER = null;
     DEFENDER = null;
     clearMessage();
+    toggleBattleHoverable(true);
 }
 
 function filterByName() {
@@ -250,13 +257,21 @@ function toggleAudio() {
         audio.volume = 0.2;
         audio.play();
         for (let i = 0; i < audioButtons.length; i++) {
-            audioButtons[i].src = '/assets/icons/volume.svg';
+            audioButtons[i].src = THEME == 'dark' ? '/assets/icons/volume-white.svg' : '/assets/icons/volume.svg';
+            audioButtons[i].setAttribute('data-light', '/assets/icons/volume.svg');
+            audioButtons[i].setAttribute('data-dark', '/assets/icons/volume-white.svg');
         }
     }
     else {
         audio.muted = !audio.muted;
         for (let i = 0; i < audioButtons.length; i++) {
-            audioButtons[i].src = audio.muted ? '/assets/icons/mute.svg' : '/assets/icons/volume.svg';
+            audioButtons[i].src = audio.muted ?
+                THEME == 'dark' ? '/assets/icons/mute-white.svg' : '/assets/icons/mute.svg' :
+                THEME == 'dark' ? '/assets/icons/volume-white.svg' : '/assets/icons/volume.svg';
+            audioButtons[i].setAttribute('data-light', audio.muted ?
+                '/assets/icons/mute.svg' : '/assets/icons/volume.svg');
+            audioButtons[i].setAttribute('data-dark', audio.muted ?
+                '/assets/icons/mute-white.svg' : '/assets/icons/volume-white.svg');
         }
     }
 }
@@ -306,8 +321,6 @@ function battleFlipCard(id) {
             defense: Number(pokemonWrapper.getElementsByClassName("defense")[0].innerHTML),
         }
         pokemonWrapper.getElementsByClassName('card-inner')[0].classList.toggle("flipped");
-        console.log('ATTACKER', ATTACKER);
-        console.log('DEFENDER', DEFENDER);
         const message = document.getElementsByClassName("message")[0];
         let text;
         if (ATTACKER.attack > DEFENDER.defense) {
@@ -321,6 +334,7 @@ function battleFlipCard(id) {
         text.getElementsByClassName("attacker")[0].innerHTML = ATTACKER.name;
         text.getElementsByClassName("defender")[0].innerHTML = DEFENDER.name;
         text.classList.toggle("hide");
+        toggleBattleHoverable(false);
         document.getElementsByClassName('button-restart')[0].classList.toggle("hide");
     }
 }
@@ -334,15 +348,25 @@ function clearMessage() {
 
 }
 
+function toggleBattleHoverable(enabled) {
+    const hoverableCards = document.getElementsByClassName("back");
+    for (let i = 0; i < hoverableCards.length; i++) {
+        if (enabled) {
+            hoverableCards[i].classList.add('hoverable');
+        }
+        else {
+            hoverableCards[i].classList.remove('hoverable');
+        }
+    }
+}
+
+
+
 function setTheme() {
     const body = document.getElementsByTagName('body')[0];
     body.setAttribute('data-theme', THEME == 'dark' ? 'dark' : 'light');
-    const themeButtons = document.getElementsByClassName('theme-button-img');
-    for (let i = 0; i < themeButtons.length; i++) {
-        themeButtons[i].src = THEME == 'dark' ? '/assets/icons/moon.svg' : '/assets/icons/sun.svg';
-    }
-    const ballImages = document.getElementsByClassName('background-ball');
-    for (let i = 0; i < ballImages.length; i++) {
-        ballImages[i].src = THEME == 'dark' ? '/assets/images/dusk-ball.png' : '/assets/images/poke-ball.png';
+    const themeImages = document.getElementsByClassName('theme-image');
+    for (let i = 0; i < themeImages.length; i++) {
+        themeImages[i].src = THEME == 'dark' ? themeImages[i].getAttribute('data-dark') : themeImages[i].getAttribute('data-light');
     }
 }

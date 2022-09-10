@@ -6,7 +6,7 @@
 - [x] Filtre de cerca
 - [x] Combat
 - [x] Barra de menú
-- [ ] Tema clar/fosc
+- [x] Tema clar/fosc
 - [x] Audio (extra)
 
 ### Programadors

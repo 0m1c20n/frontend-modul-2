@@ -1,12 +1,9 @@
 /* VARIABLES */
 
 * {
-    --background-body: #424242;
-    --background-nav: #FFF;
     --background-title: #313131;
-    --background-main: #F2F2F2;
     --background-menu-hover: #E2E2E2;
-    --background-section: #FFF;
+    --border-input: #898989;
     --border-menu: #212121;
     --border-type: #a4a4a4;
     --button-orange: #ee6b2f;
@@ -15,11 +12,12 @@
     --button-blue-hover: #1b82b1;
     --stat-attack: #f44336;
     --stat-defense: #2196f3;
-    --text: #212121;
     --text-secondary: #616161;
+    --text-dark: #212121;
     --white: #FFF;
     --card-border: #212121;
     --card-stats-border: #212121;
+    --card-stats-color: #212121;
     --card-name-background: rgba(0, 0, 0, .5);
     --card-type1-background: #a4acaf;
     --card-type2-background: #a4acaf;
@@ -51,11 +49,29 @@
     --water: #4592c4;
 }
 
+[data-theme="light"] {
+    --background-main: #F2F2F2;
+    --background-nav: #FFF;
+    --background-body: #F2F2F2;
+    --background-section: #FFF;
+    --text: #212121;
+    --text-secondary: #616161;
+}
+
+[data-theme="dark"] {
+    --background-main: #616161;
+    --background-nav: #121212;
+    --background-body: #121212;
+    --background-section: #121212;
+    --text: #FFF;
+    --text-secondary: #898989;
+}
+
 /* LAYOUT */
 
 body {
     margin: 0;
-    background: var(--background-body) url('/assets/images/body_bg.png') center;
+    background: var(--background-body) url('/assets/images/main_bg.png') center;
     color: var(--text);
     font-family: Helvetica, Arial, sans-serif;
     padding-bottom: 50px;
@@ -81,7 +97,7 @@ nav {
 
 .nav-container {
     width: 90%;
-    max-width: 895px;
+    max-width: 1280px;
     margin: 0 auto;
     text-align: center;
     display: flex;
@@ -165,13 +181,14 @@ header button img {
     top: var(--nav-height);
     width: 100%;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     justify-content: center;
     z-index: 1;
 }
 
 #responsive-menu .links {
     flex-direction: column;
+    flex: 1;
 }
 
 #responsive-menu .menu-item {
@@ -192,7 +209,7 @@ header button img {
 }
 
 #responsive-menu .actions {
-    border-top: 1px solid var(--border-menu);
+    /* border-left: 1px solid var(--border-menu); */
     padding: 10px 20px;
 }
 
@@ -214,27 +231,15 @@ header button img {
 
 .title h1 {
     font-size: 60px;
-}
-
-[data-theme="light"] .title h1 {
     color: var(--text);
-}
-
-[data-theme="dark"] .title h1 {
-    color: var(--white);
 }
 
 main {
     max-width: 1280px;
     margin: 0 auto;
-    background: var(--background-main) url('/assets/images/main_bg.png') center;
-    padding-bottom: 40px;
 }
 
 section {
-    width: 90%;
-    max-width: 895px;
-    margin: 0 auto;
     background-color: var(--background-section);
     display: flex;
     flex-direction: column;
@@ -266,8 +271,9 @@ section {
 }
 
 #list .actions input {
-    border: 1px solid var(--background-body);
+    border: 1px solid var(--border-input);
     border-radius: 5px;
+    color: var(--text);
     padding: 10px 5px 10px 36px;
     background: transparent url('/assets/icons/search.svg') no-repeat 10px center;
 }
@@ -280,14 +286,14 @@ section {
 #list .cards {
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fill, 150px);
-    grid-gap: 12px;
+    grid-template-columns: repeat(auto-fill, 214px);
+    grid-gap: 20px;
     justify-content: space-evenly;
 }
 
 #list .card {
-    height: 210px;
-    width: 150px;
+    height: 300px;
+    width: 215px;
     list-style: none;
     perspective: 1000px;
 }
@@ -310,10 +316,10 @@ section {
 }
 
 #list .card .background {
-    height: 198px;
-    width: 138px;
-    border: 6px solid var(--text);
-    border-radius: 3px;
+    height: 284px;
+    width: 199px;
+    border: 8px solid var(--text);
+    border-radius: 4px;
     background: linear-gradient(to right, var(--card-type1-background) 50%, var(--card-type2-background) 50%);
     display: flex;
     flex-direction: column;
@@ -329,14 +335,14 @@ section {
     justify-content: center;
 }
 
-#list .card:hover .front {
+#list .card .front.hoverable:hover {
     transform: rotateY(180deg) scale(1.05);
 }
 
 #list .card .name-container {
-    font-size: 14px;
+    font-size: 18px;
     font-weight: bold;
-    line-height: 22px;
+    line-height: 30px;
     text-align: center;
     color: var(--card-name);
     background-color: var(--card-name-background);
@@ -355,17 +361,18 @@ section {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 6px 6px 6px;
+    padding: 0 8px 8px 8px;
 }
 
 #list .card .attack-container,
 #list .card .defense-container {
     border: 2px solid var(--card-stats-border);
-    font-size: 14px;
+    color: var(--card-stats-color);
+    font-size: 18px;
     font-weight: bold;
     border-radius: 50%;
-    height: 28px;
-    width: 28px;
+    height: 40px;
+    width: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -532,6 +539,10 @@ section {
 
 #not-found img {
     height: 500px;
+    width: 500px;
+    padding: 20px;
+    background-color: var(--background-main);
+    border-radius: 20px;
 }
 
 .more-link {
@@ -545,7 +556,7 @@ section {
     pointer-events: none;
 }
 
-#list .cards.battle .card:hover .back {
+#list .cards.battle .card .back.hoverable:hover {
     transform: scale(1.05);
 }
 
@@ -608,10 +619,12 @@ section {
 
 .electric {
     background-color: var(--electric);
+    color: var(--text-dark);
 }
 
 .fairy {
     background-color: var(--fairy);
+    color: var(--text-dark);
 }
 
 .fighting {
@@ -626,6 +639,7 @@ section {
 
 .flying {
     background-color: var(--flying);
+    color: var(--text-dark);
 }
 
 .ghost {
@@ -635,18 +649,22 @@ section {
 
 .grass {
     background-color: var(--grass);
+    color: var(--text-dark);
 }
 
 .ground {
     background-color: var(--ground);
+    color: var(--text-dark);
 }
 
 .ice {
     background-color: var(--ice);
+    color: var(--text-dark);
 }
 
 .normal {
     background-color: var(--normal);
+    color: var(--text-dark);
 }
 
 .poison {
@@ -666,6 +684,7 @@ section {
 
 .steel {
     background-color: var(--steel);
+    color: var(--text-dark);
 }
 
 .water {
